@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ProficiencyTest</string>
     <string name="create_user">Create User</string>
+    <string name="name">Name</string>
+    <string name="job">Job</string>
+    <string name="save_user">Save user</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_job">Enter your job</string>
 </resources>
