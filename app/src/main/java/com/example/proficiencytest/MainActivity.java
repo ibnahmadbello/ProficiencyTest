@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.proficiencytest.adapter.RecyclerViewAdapter;
 import com.example.proficiencytest.model.User;
@@ -24,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
     Presenter presenter;
@@ -33,12 +35,17 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerViewAdapter recyclerViewAdapter;
     ProgressBar progressBar;
     List<User> userList = new ArrayList<>();
+    Button button;
+    private Retrofit retrofit;
+    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        button = findViewById(R.id.button);
+        button.setOnClickListener(this);
         progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -51,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createInstance(){
-        Retrofit retrofit = UserApi.getRetrofit();
-        UserService userService = retrofit.create(UserService.class);
+        retrofit = UserApi.getRetrofit();
+        userService = retrofit.create(UserService.class);
         userService.getUsers().enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
@@ -75,4 +82,23 @@ public class MainActivity extends AppCompatActivity {
         return userResult.getData();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button) {
+            progressBar.setVisibility(View.VISIBLE);
+            userService.postUser("Abdulrazaq Ahmed", "Android Developer").enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this, "New User Created Successfully", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.d(TAG, "Error message: " + t.getMessage());
+                }
+            });
+        }
+
+    }
 }
