@@ -4,7 +4,6 @@ package com.example.proficiencytest.model;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class UserResult {
 
@@ -88,9 +87,5 @@ public class UserResult {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("page", page).append("perPage", perPage).append("total", total).append("totalPages", totalPages).append("data", data).toString();
-    }
 
 }

@@ -3,7 +3,6 @@ package com.example.proficiencytest.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class User {
 
@@ -87,9 +86,5 @@ public class User {
         this.avatar = avatar;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("email", email).append("firstName", firstName).append("lastName", lastName).append("avatar", avatar).toString();
-    }
 
 }
