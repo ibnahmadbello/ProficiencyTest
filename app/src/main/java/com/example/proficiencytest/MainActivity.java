@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ProgressBar progressBar;
     List<User> userList = new ArrayList<>();
     Button button;
-    private Retrofit retrofit;
-    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void createInstance(){
-        retrofit = UserApi.getRetrofit();
-        userService = retrofit.create(UserService.class);
+        Retrofit retrofit = UserApi.getRetrofit();
+        UserService userService = retrofit.create(UserService.class);
         userService.getUsers().enqueue(new Callback<UserResult>() {
             @Override
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
@@ -85,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button) {
-            progressBar.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(MainActivity.this, CreateNewUser.class);
+            startActivity(intent);
+            /*progressBar.setVisibility(View.VISIBLE);
             userService.postUser("Abdulrazaq Ahmed", "Android Developer").enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onFailure(Call<User> call, Throwable t) {
                     Log.d(TAG, "Error message: " + t.getMessage());
                 }
-            });
+            });*/
         }
 
     }
