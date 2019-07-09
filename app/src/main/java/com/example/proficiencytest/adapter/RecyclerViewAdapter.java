@@ -6,15 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.proficiencytest.R;
 import com.example.proficiencytest.model.User;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
@@ -23,7 +19,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<User> userList;
     Context context;
 
-    public RecyclerViewAdapter(Context context, List<User> userList){
+    public RecyclerViewAdapter(Context context, List<User> userList) {
         this.context = context;
         this.userList = userList;
     }
@@ -51,17 +47,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return userList == null ? 0 : userList.size();
     }
 
-    public void setData(List<User> users){
+    public void setData(List<User> users) {
         this.userList.addAll(users);
         notifyDataSetChanged();
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView firstNametxt, lastNametxt;
-        public ImageView imageView;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView firstNametxt, lastNametxt;
+        private ImageView imageView;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             super(view);
 
             firstNametxt = view.findViewById(R.id.first_name_text);

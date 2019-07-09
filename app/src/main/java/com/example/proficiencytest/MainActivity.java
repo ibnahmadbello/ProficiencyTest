@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.proficiencytest.adapter.RecyclerViewAdapter;
 import com.example.proficiencytest.model.User;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     public RecyclerViewAdapter recyclerViewAdapter;
+    ProgressBar progressBar;
     List<User> userList = new ArrayList<>();
 
     @Override
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewAdapter = new RecyclerViewAdapter(this, userList);
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<UserResult> call, Response<UserResult> response) {
                 List<User> users = fetchUsers(response);
                 recyclerViewAdapter.setData(users);
+                progressBar.setVisibility(View.GONE);
                 Log.d(TAG, "Adapter: " + users.get(0).getFirstName());
             }
 
