@@ -14,7 +14,7 @@ public class UserApi {
 
     private static Retrofit retrofit = null;
 
-    private static OkHttpClient buildClient(){
+    private static OkHttpClient buildClient() {
         return new OkHttpClient
                 .Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

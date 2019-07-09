@@ -27,10 +27,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    Presenter presenter;
 
     RecyclerView recyclerView;
     public RecyclerViewAdapter recyclerViewAdapter;
@@ -49,14 +48,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewAdapter = new RecyclerViewAdapter(this, userList);
-//        presenter = new Presenter(this);
-//        presenter.createInstance();
+
         createInstance();
         recyclerView.setAdapter(recyclerViewAdapter);
 
     }
 
-    public void createInstance(){
+    public void createInstance() {
         Retrofit retrofit = UserApi.getRetrofit();
         UserService userService = retrofit.create(UserService.class);
         userService.getUsers().enqueue(new Callback<UserResult>() {

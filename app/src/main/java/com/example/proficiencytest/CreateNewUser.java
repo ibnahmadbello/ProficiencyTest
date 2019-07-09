@@ -36,7 +36,7 @@ public class CreateNewUser extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.save_user){
+        if (view.getId() == R.id.save_user) {
             if (nameEditText.length() != 0 && jobEditText.length() != 0)
                 newUser = new NewUser(nameEditText.getText().toString(), jobEditText.getText().toString());
             presenter.createInstance();

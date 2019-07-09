@@ -24,13 +24,11 @@ public class User {
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public User() {
     }
 
     /**
-     * 
      * @param id
      * @param lastName
      * @param email

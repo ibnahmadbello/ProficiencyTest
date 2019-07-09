@@ -2,6 +2,7 @@
 package com.example.proficiencytest.model;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,13 +26,11 @@ public class UserResult {
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public UserResult() {
     }
 
     /**
-     * 
      * @param total
      * @param page
      * @param data
