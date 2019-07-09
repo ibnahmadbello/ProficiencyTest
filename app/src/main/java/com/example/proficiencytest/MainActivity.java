@@ -86,19 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.button) {
             Intent intent = new Intent(MainActivity.this, CreateNewUser.class);
             startActivity(intent);
-            /*progressBar.setVisibility(View.VISIBLE);
-            userService.postUser("Abdulrazaq Ahmed", "Android Developer").enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this, "New User Created Successfully", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<User> call, Throwable t) {
-                    Log.d(TAG, "Error message: " + t.getMessage());
-                }
-            });*/
         }
 
     }
